@@ -1,0 +1,92 @@
+[Root]
+Most Recent Package=制卡
+
+
+[Package|制卡|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=E:\kl\AMS\制卡\CCP\包
+
+[Package|制卡|Configure DAO ISAMs]
+Applicable=No
+
+[Package|制卡|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|制卡|Files Found]
+
+[Package|制卡|Files Released]
+
+[Package|制卡|Missing Dependency Information]
+
+[Package|制卡|Out-of-Date Dependency Information]
+
+[Package|制卡|Files Added]
+
+[Package|制卡|Files Removed]
+
+[Package|制卡|Files In Project]
+E:\kl\AMS\制卡\CCP\CCP.exe=Yes
+C:\WINDOWS\system32\msvbvm60.dll=Yes
+C:\WINDOWS\system32\oleaut32.dll=Yes
+C:\WINDOWS\system32\olepro32.dll=Yes
+C:\WINDOWS\system32\asycfilt.dll=Yes
+C:\WINDOWS\system32\stdole2.tlb=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\system32\VB6CHS.DLL=Yes
+C:\WINDOWS\system32\mwrf32.dll=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINDOWS\system32\VB6STKIT.DLL=Yes
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|制卡|Configure Registry Files]
+Applicable=No
+
+[Package|制卡|Configure Remote Servers]
+Applicable=No
+
+[Package|制卡|Install Locations]
+E:\kl\AMS\制卡\CCP\CCP.exe=$(AppPath)
+C:\WINDOWS\system32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\oleaut32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\olepro32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\asycfilt.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\VB6CHS.DLL=$(WinSysPath)
+C:\WINDOWS\system32\mwrf32.dll=$(WinSysPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|制卡|Configure Shared Files]
+Applicable=Yes
+E:\kl\AMS\制卡\CCP\CCP.exe=Yes
+
+[Package|制卡|Distribution]
+Type=single
+Size=
+Title=制卡
+
+[Package|制卡|Package]
+PackageFolder=E:\kl\AMS\制卡\CCP\包
+ProjectFolder=E:\kl\AMS\制卡\CCP
+ServerSideCab=
+File1=E:\kl\AMS\制卡\CCP\包\setup.exe
+File2=E:\kl\AMS\制卡\CCP\包\Setup.Lst
+File3=E:\kl\AMS\制卡\CCP\包\CCP.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|制卡|IconGroups]
+Group0=制卡
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|制卡|制卡]
+Icon1=CCP.exe
+Title1=制卡
+StartIn1=$(AppPath)
+Key1=Icon1

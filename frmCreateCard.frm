@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.Form frmCreateCard 
+Begin VB.Form frmCreateCard
    Caption         =   "制卡"
    ClientHeight    =   6030
    ClientLeft      =   60
@@ -9,9 +9,9 @@ Begin VB.Form frmCreateCard
    ScaleHeight     =   6030
    ScaleWidth      =   7740
    StartUpPosition =   2  '屏幕中心
-   Begin VB.CommandButton Command3 
+   Begin VB.CommandButton Command3
       Caption         =   "返回原始卡"
-      BeginProperty Font 
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -26,9 +26,9 @@ Begin VB.Form frmCreateCard
       Top             =   3240
       Width           =   1215
    End
-   Begin VB.OptionButton opt2 
+   Begin VB.OptionButton opt2
       Caption         =   "COM2"
-      BeginProperty Font 
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -43,9 +43,9 @@ Begin VB.Form frmCreateCard
       Top             =   840
       Width           =   1215
    End
-   Begin VB.OptionButton opt1 
+   Begin VB.OptionButton opt1
       Caption         =   "COM1"
-      BeginProperty Font 
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -60,8 +60,8 @@ Begin VB.Form frmCreateCard
       Top             =   840
       Width           =   1215
    End
-   Begin VB.ListBox lbCreateInfo 
-      BeginProperty Font 
+   Begin VB.ListBox lbCreateInfo
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -78,9 +78,9 @@ Begin VB.Form frmCreateCard
       Top             =   1200
       Width           =   5175
    End
-   Begin VB.CommandButton Command2 
+   Begin VB.CommandButton Command2
       Caption         =   "关　闭"
-      BeginProperty Font 
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -95,9 +95,9 @@ Begin VB.Form frmCreateCard
       Top             =   4320
       Width           =   1215
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton Command1
       Caption         =   "制　卡"
-      BeginProperty Font 
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -112,9 +112,9 @@ Begin VB.Form frmCreateCard
       Top             =   2160
       Width           =   1215
    End
-   Begin VB.Label Label1 
+   Begin VB.Label Label1
       Caption         =   "福保会员管理系统的制卡程序"
-      BeginProperty Font 
+      BeginProperty Font
          Name            =   "宋体"
          Size            =   9.75
          Charset         =   134
@@ -143,7 +143,7 @@ Private Sub Command1_Click()
     Dim strContinue As Boolean
     Dim strDataGroup As String
     Dim strmsg As String
-    
+
     Dim akey(6) As Byte
     Dim bkey(6) As Byte
     Dim loadmode, sector As Integer
@@ -151,18 +151,18 @@ Private Sub Command1_Click()
     Dim cardmode As Integer
     Dim databuff32 As String * 32
     Dim address As Integer
-    
+
     strContinue = True
-    
+
     MsgBox "请放上第一张卡！", vbInformation + vbOKOnly, "系统提示"
-    
+
     While strContinue
         icdev = -1
         strmsg = ""
         strDataGroup = "00000000000000000000000000000000"
         iCount = iCount + 1
-        
-        
+
+
         '初始化端口
         If icdev < 0 Then
             If opt1.value = True Then
@@ -176,7 +176,7 @@ Private Sub Command1_Click()
             MsgBox "设备初始化端口失败，请检查COM1端口连接情况！", vbCritical + vbOKOnly, "系统信息"
             Exit Sub
         End If
-    
+
         '装载密码
         akey(0) = &HFF
         akey(1) = &HFF
@@ -184,7 +184,7 @@ Private Sub Command1_Click()
         akey(3) = &HFF
         akey(4) = &HFF
         akey(5) = &HFF
-    
+
         loadmode = 0
         sector = 1
         st = rf_load_key(ByVal icdev, loadmode, sector, akey(0))
@@ -194,7 +194,7 @@ Private Sub Command1_Click()
               Call quit
               Exit Sub
         End If
-    
+
         bkey(0) = &HFF
         bkey(1) = &HFF
         bkey(2) = &HFF
@@ -253,7 +253,7 @@ Private Sub Command1_Click()
               Call quit
               Exit Sub
         End If
-        
+
         '写数据，卡号
         address = 5
         databuff32 = strDataGroup
@@ -277,20 +277,20 @@ Private Sub Command1_Click()
         End If
 
         '修改密码
-        bkey(0) = &HB0
-        bkey(1) = &H11
-        bkey(2) = &H4C
-        bkey(3) = &HE9
-        bkey(4) = &HA3
-        bkey(5) = &HD7
-        
-        akey(0) = &HA3
-        akey(1) = &HD4
-        akey(2) = &H56
-        akey(3) = &H8C
-        akey(4) = &HB9
-        akey(5) = &HE5
-        
+        bkey(0) = &H0
+        bkey(1) = &H1
+        bkey(2) = &H2
+        bkey(3) = &H3
+        bkey(4) = &H4
+        bkey(5) = &H5
+
+        akey(0) = &H0
+        akey(1) = &H1
+        akey(2) = &H2
+        akey(3) = &H3
+        akey(4) = &H4
+        akey(5) = &H5
+
         st = rf_changeb3(ByVal icdev, 1, akey(0), 0, 0, 0, 1, 0, bkey(0))
         If st <> 0 Then
             MsgBox "修改A,B密码时出错！", vbCritical + vbOKOnly, "系统错误"
@@ -300,12 +300,12 @@ Private Sub Command1_Click()
         End If
 
         st = rf_beep(icdev, 3)
-        
+
         '取消设备
         Call quit
-    
+
         lbCreateInfo.AddItem vbCrLf & "第 " & Trim(Str$(iCount)) & " 张卡制卡成功！"
-        
+
         strmsg = MsgBox("请插入下一张卡！", vbQuestion + vbOKCancel, "系统提示")
         If strmsg = vbOK Then
             strContinue = True
@@ -323,7 +323,7 @@ Private Sub Command3_Click()
     Dim strContinue As Boolean
     Dim strDataGroup As String
     Dim strmsg As String
-    
+
     Dim akey(6) As Byte
     Dim bkey(6) As Byte
     Dim loadmode, sector As Integer
@@ -331,18 +331,18 @@ Private Sub Command3_Click()
     Dim cardmode As Integer
     Dim databuff32 As String * 32
     Dim address As Integer
-    
+
     strContinue = True
-    
+
     MsgBox "请放上第一张卡！", vbInformation + vbOKOnly, "系统提示"
-    
+
     While strContinue
         icdev = -1
         strmsg = ""
         strDataGroup = "00000000000000000000000000000000"
         iCount = iCount + 1
-        
-        
+
+
         '初始化端口
         If icdev < 0 Then
             If opt1.value = True Then
@@ -356,45 +356,16 @@ Private Sub Command3_Click()
             MsgBox "设备初始化端口失败，请检查COM1端口连接情况！", vbCritical + vbOKOnly, "系统信息"
             Exit Sub
         End If
-    
+
         '装载密码
-'        akey(0) = &HA3
-'        akey(1) = &HD4
-'        akey(2) = &H56
-'        akey(3) = &H8C
-'        akey(4) = &HB9
-'        akey(5) = &HE5
-'
-'        loadmode = 0
-'        sector = 1
-'        st = rf_load_key(ByVal icdev, loadmode, sector, akey(0))
-'        If st <> 0 Then
-'              MsgBox "装载A密码出错，请重试！", vbCritical + vbOKOnly, "系统信息"
-'              lbCreateInfo.AddItem vbCrLf & "第 " & Trim(Str$(iCount)) & " 张卡返原失败！"
-'              Call quit
-'              Exit Sub
-'        End If
-    
-        bkey(0) = &HB0
-        bkey(1) = &H11
-        bkey(2) = &H4C
-        bkey(3) = &HE9
-        bkey(4) = &HA3
-        bkey(5) = &HD7
-'        bkey(0) = &HB0
-'        bkey(1) = &H1B
-'        bkey(2) = &H4C
-'        bkey(3) = &H49
-'        bkey(4) = &HA3
-'        bkey(5) = &HD3
-'
-'        bkey(0) = &HB0
-'        bkey(1) = &H11
-'        bkey(2) = &H4C
-'        bkey(3) = &HE9
-'        bkey(4) = &HA3
-'        bkey(5) = &HD7
-        
+
+        bkey(0) = &H0
+        bkey(1) = &H1
+        bkey(2) = &H2
+        bkey(3) = &H3
+        bkey(4) = &H4
+        bkey(5) = &H5
+
         loadmode = 4
         sector = 1
         st = rf_load_key(ByVal icdev, loadmode, sector, bkey(0))
@@ -447,7 +418,7 @@ Private Sub Command3_Click()
               Call quit
               Exit Sub
         End If
-        
+
         '写数据，卡号
         address = 5
         databuff32 = strDataGroup
@@ -491,15 +462,15 @@ Private Sub Command3_Click()
             Call quit
             Exit Sub
         End If
-        
+
         '蜂鸣
         st = rf_beep(icdev, 3)
 
         '取消设备
         Call quit
-    
+
         lbCreateInfo.AddItem vbCrLf & "第 " & Trim(Str$(iCount)) & " 张卡返原成功！"
-        
+
         strmsg = MsgBox("请插入下一张卡！", vbQuestion + vbOKCancel, "系统提示")
         If strmsg = vbOK Then
             strContinue = True
